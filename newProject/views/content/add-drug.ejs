@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="icon" href="/images/wu.png">
+   
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        <h4>add Drug</h4>
+        <div class="custom-file">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="file" class="custom-file-input" id="customFileLangHTML">
+                    <label class="custom-file-label" for="customFileLangHTML" data-browse="เลือกไฟล์">เลือกข้อมูลนำเข้า
+                        *CSV</label>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-outline-success col-md-3">ยืนยัน</button>
+                </div>
+            </div>
+        </div>
+        แสดงชื่อยา มื้อยา เวลาจ่ายยา จำนวน 
+        <hr>
+       
+        <a class="btn btn-primary" href="/trolley/detail-trolley">ย้อนกลับ</a>
+    </div>
+
+</body>
+
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+</script>
+
+</html>

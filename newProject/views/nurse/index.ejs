@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/images/wu.png">
+
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+        <div class="container"id="meal" >
+            <hr>
+            <div class="row mt-md-3">
+                <div class="col-md-4">
+                    <h4>รถเข็นจ่ายยา:
+                        <%=ward%>
+                    </h4>
+                </div>
+            </div>
+
+            <hr>
+            <div class="row">
+                <% for (let i = 0; i < meal.length; i++) {%>
+
+
+                    <div class="col-md-3">
+                        <div class="card card-trolley   shadow ">
+
+                            <div class="card-body">
+                                <div class="numbers">
+                                    <a id="nav-profile-tab" data-toggle="collapse" href="#<%=meal[i].code%>" role="tab" aria-controls="nav-profile" aria-selected="true" ">
+                                        <p class=" h6 ">
+                                            <%=meal[i].name%>
+                                        </p>
+                                    </a>
+                                    <p class=" card-category "> จำนวนผู้ป่วย
+                                        <% switch (meal[i].code) { 
+                                        case 'BB' :%>
+                                            <%=meal[i].data.length%>
+                                                <% break; 
+                                        case 'AB' :%>
+                                            <%=meal[i].data.length%>
+                                            <% break; 
+                                        case 'BL' :%>
+                                            <%=meal[i].data.length%>
+                                            <%break; 
+                                        case 'AL' :%>
+                                            <%=meal[i].data.length%>
+                                            <%break; 
+                                        case 'BD' :%>
+                                            <%=meal[i].data.length%>
+                                            <%break; 
+                                        case 'AD' :%>
+                                            <%=meal[i].data.length%>
+                                             <%break; 
+                                        case 'BE' :%>
+                                            <%=meal[i].data.length%>
+                                            <%break; } %>
+                                                                                                    คน</p>
+
+                                    <p class=" card-category text-center ">
+
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+            </div>
+            <hr>
+            <div class="row ">
+                <div class="col-md-8 ">
+
+                    <button class="btn btn-primary " onclick="window.location.href='nurse/checkhn' "><i
+                        class="bi bi-plus "></i>เมนูการจ่ายยา</button>
+                    <button class="btn btn-success " onclick="window.location.href='nurse/returndrugs' "><i
+                        class="bi bi-plus "></i>เมนูการคืนยา</button>
+                    <button class="btn btn-warning " onclick="window.location.href='nurse/cancledrug' "><i
+                        class="bi bi-plus "></i>เมนูเลื่อนยา</button>
+                </div>
+                <div class="col-md-4 ">
+                </div>
+            </div>
+
+            <hr>
+            <!---->
+            <div class="row ">
+                <div class="col-md-12 ">
+                    <p>จำนวนผู้ป่วยทานยา
+                        <%=count%> เตียง</p>
+                </div>
+
+            </div>
+
+            <div class=" row ">
+                <% for (let i = 0; i < meal.length; i++) {%>
+                   <% meal[i].data.forEach(k => {%>
+                            <div class=" col-md-3 collapse " id="<%=k.meal%>" data-parent="#meal"  >
+                            <a href="/nurse/p/<%=k.bed%>">
+                                    <div class="card shadow mt-1 bg-green text-dark">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <img src="/images/hospital.png" alt="" srcset="">
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <label class="card-text">ผู้ป่วย:<%=k.bed%></label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    </a>
+                                </div>
+                   <%}); %>
+                    
+                <%} %>
+     
+            </div>
+            </div>
+            </div>
+</body>
+
+</html>

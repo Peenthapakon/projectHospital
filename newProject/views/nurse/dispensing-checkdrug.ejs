@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/images/wu.png">
+   
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                       <div class="row">
+                           <div class="col-md-3">
+                            <img src="/images/patient.jpeg" alt="" width="100%"> 
+                           </div>
+                           <div class="col-md-9">
+                            <p class="card-text">HN:<%=hn%></p>
+                            <p class="card-text">ชื่อสกุล::<%=fname +''+ lname%></p>
+                            <p class="card-text">เตียง::<%=bed%></p>
+                           </div>
+                       </div>
+                     
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <% if (pack) {%>
+                        <% for (let i = 0; i < pack.length; i++) {%>
+                           
+                    <div class="col-lg-3">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <img src="/images/meal0.png" alt="" width="50%">
+                                            <hr>
+                                            <label for="">มื้อ
+                                               
+                                                    <% switch (pack[i].pdMeal) {
+                                                        case 'mm':%>
+                                                        <a href="/nurse/dispensingdrug/<%=hn%>/mm">เช้า</a>
+                                                           
+                                                           <% break;
+                                                        case 'aa':%>
+                                                        <a href="/nurse/dispensingdrug/<%=hn%>/aa">เที่ยง</a>
+                                                           <% break; 
+                                                       case 'ee':%>
+                                                       <a href="/nurse/dispensingdrug/<%=hn%>/ee">เย็น</a>
+                                                            <%break;       
+                                                    
+                                                    } %> 
+                                                
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    </div>
+                    <% } %>  
+                            <%} %>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+
+        </div>
+        <hr>
+        <a  class="btn btn-primary" href="/nurse/dispensinghn">ย้อนกลับ</a>
+    </div>
+   
+
+</body>
+
+
+
+</html>

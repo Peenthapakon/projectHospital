@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <link rel="icon" href="/images/wu.png">
+
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        รายการยา
+        <div class="row" >
+            <div class="col-md-12">
+                <table class="table table-striped table-inverse table-responsive">
+                    <thead class="thead-inverse text-center">
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ชื่อ</th>
+                            <th>จำนวน</th>
+                            <th>มื้อ</th>
+                            <th>จ่าย</th>
+                           
+                            <th>off</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% if (rs) {%>
+                        <% for (let i = 0; i < rs.length; i++) {%>
+       
+                            <tr>
+                                <td><%=i+1%></td>
+                                <td cope="row"><%=rs[i].name%></td>
+                                <td><%=rs[i].unit%></td>
+                                <td>ก่อน/อาหาร</td>
+                                <td><button class="btn btn-success btn-sm">จ่าย</button></td>
+                                <td><button class="btn btn-warning btn-sm">หยุดยา</button></td>
+                            </tr>
+                     <%} %>
+                        <%} %>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <a  class="btn btn-primary" href="/nurse/dispensingdrug/<%=hn%>">ย้อนกลับ</a>
+    </div>
+   
+
+</body>
+
+
+
+</html>

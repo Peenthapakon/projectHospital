@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/images/wu.png">
+</head>
+<style>
+
+</style>
+
+<body>
+
+    <%- include ../core/navbar.ejs %>
+        <div class="container">
+            <hr>
+            <div class="row mt-md-3">
+                <div class="col-md-3">
+                    <h4>+นำยาเข้าลิ้นชัก</h4>
+                </div>
+
+                <div class="col-sm-9 text-right">
+                    <a class="btn btn-success btn-sm" href="/trolley/uploadtrolley"><i
+                        class="bi bi-plus"></i>อัพโหลดข้อมูลผู้ป่วย</a>
+                    <a href="/trolley/uploadlistdrug" class="btn btn-info btn-sm"><i
+                        class="bi bi-plus"></i>อัพโหลดรายการยา</a>
+                    <button class="btn btn-danger btn-sm" onclick="resetData()">ลบข้อมูลทั้งหมด</button>
+
+                    <a href="/trolley/getallperson" class="btn btn-primary btn-sm">รายชื่อผู้ป่วย</a>
+                    <a href="/trolley/getalldrug" class="btn btn-oragne btn-sm">รายการยา</a>
+                    <button class="btn btn-danger btn-sm">คืนยา</button>
+
+
+                </div>
+            </div>
+
+            <hr>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img src="/images/good.png" alt="" width="100%">
+                                </div>
+                                <div class="col-md-8">
+                                    <div>
+                                        <ul class="none-list">
+                                            <li>
+                                                <strong class="s-left">หอผู้ป่วย</strong>
+                                                <span class="span-right">
+                                                <%=data1.tward%>
+                                            </span>
+                                            </li>
+
+                                            <li>
+                                                <strong class="s-left">จำนวนลิ้นชัก</strong>
+                                                <span class="span-right">
+                                                <%=data1.tdrawenumber%> ชิ้น
+                                            </span>
+                                            </li>
+                                            <li>
+                                                <strong class="s-left">จำนวนชั้น</strong>
+                                                <span class="span-right">
+                                                <%=data1.tdrawenumber%> ชั้น
+                                            </span>
+                                            </li>
+
+
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="text-muted">ป้อนหมายเลขรหัสยา *</h5>
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form accept="/detail-trolley/<%=id%>" method="POST">
+                                <div class="form-group  row">
+                                    <input type="search" class="form-control col-md-9" placeholder="DrugID" name="drugId">
+                                    <button type="submit" class="btn btn-outline-success col-md-3">ยืนยัน</button>
+                                </div>
+                            </form>
+                            <!--check error-->
+                            <% if(locals.errors){ %>
+
+                                <% Object.values(errors).forEach(function(error){%>
+                                    <script type="text/javascript">
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'กรุณาป้อนรหัสซองยา',
+                                            text: 'กรุณาป้อนรหัสซองยา',
+                                            timer: 1000
+                                        })
+                                    </script>
+                                    <%})%>
+
+                                        <%}%>
+                                            <% if(messages.success) {%>
+                                                <script type="text/javascript">
+                                                    Swal.fire({
+                                                        icon: 'success',
+                                                        title: 'ป้อนข้อมูลสำเร็จ',
+                                                        text: 'ป้อนข้อมูลสำเร็จ',
+                                                        timer: 1000
+                                                    })
+                                                </script>
+                                                <%}%>
+                                                    <% if(messages.error) {%>
+                                                        <script type="text/javascript">
+                                                            Swal.fire({
+                                                                icon: 'error',
+                                                                title: 'ไม่พบรหัสยา',
+                                                                text: 'กรุณาป้อนรหัสยาใหม่',
+                                                                timer: 1000
+                                                            })
+                                                        </script>
+                                                        <%}%>
+                                                            <!--check error-->
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <% for (let i=0; i < data.length; i++) {%>
+                        <img src="/images/patient.jpeg" alt="" width="35px">
+                        <strong class="s-left">HN:<%=data[i].hnId%></strong>
+                        <strong class="s-left">ชื่อ:<%=data[i].fullname%> </strong>
+                        <span class="span-right">เตียง:</span>
+                        <span class="span-right">
+                            <%=data[i].bed%>
+                        </span>
+                        <strong class="s-left">ลิ้นชัก:<%=data[i].codebox%>
+
+
+                        </strong>
+
+
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md-12">
+                    <% if (data) {%>
+                        <table class="table">
+                            <thead class="bg-blue text-white">
+                                <tr>
+                                    <th>#</th>
+                                    <th>ชื่อ</th>
+                                    <th>จำนวน</th>
+                                    <th>มื้อ</th>
+
+                                </tr>
+
+
+                            </thead>
+                            <% if(!locals.errors){ %>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <%=i+1%>
+                                        </th>
+                                        <td>
+                                            <%=data[i].packName%>
+                                        </td>
+                                        <td>
+                                            <%=data[i].packUnit%>
+                                        </td>
+                                        <td>
+                                            <% switch (data[i].packMeal) { case 'BฺB' :%>
+                                                <%='ก่อน /เช้า'%>
+                                                    <% break; case 'AB' :%>
+                                                        <%='หลัง /เช้า'%>
+                                                            <% break; case 'BL' :%>
+                                                                <%='ก่อน /เที่ยง'%>
+                                                                    <%break; case 'AL' :%>
+                                                                        <%='หลัง /เที่ยง'%>
+                                                                            <%break; case 'BD' :%>
+                                                                                <%='ก่อน /เย็น'%>
+                                                                                    <%break; case 'AD' :%>
+                                                                                        <%='หลัง /เย็น'%>
+                                                                                            <%break; case 'BE' :%>
+                                                                                                <%='ก่อนนอน'%>
+                                                                                                    <%break; } %>
+                                        </td>
+                                    </tr>
+                                    <%} %>
+                                </tbody>
+                                <%}%>
+                                    <%} %>
+                        </table>
+
+                        <% if (!data) {%>
+                            <p class="text-center">ไม่พบข้อมูล</p>
+                            <%} %>
+                                <hr>
+                                <a class="btn btn-primary" href="/trolley">ย้อนกลับ</a>
+                </div>
+
+
+            </div>
+
+
+        </div>
+        </div>
+
+</body>
+
+
+
+</html>

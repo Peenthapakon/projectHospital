@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <link rel="icon" href="/images/wu.png">
+ 
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        <hr>
+        <div class="row mt-md-3">
+            <div class="col-md-4">
+                <h4>รถเข็นจ่ายยา:ตึกxxxxxxxx</h4>
+            </div>
+            <div class="col-md-8  text-right">
+                <button class="btn btn-primary" onclick="window.location.href='#'"><i
+                        class="bi bi-plus"></i>เปิดลิ้นชักทั้งหมด</button>
+                <button class="btn btn-info" onclick="window.location.href='detail-trolley/add-patient'"><i
+                        class="bi bi-plus"></i>เพิ่มรายชื่อผู้ป่วย</button>
+                <button class="btn btn-info" onclick="window.location.href='detail-trolley/add-drug'"><i
+                        class="bi bi-plus"></i>เพิ่มข้อมูลการทานยา</button>
+            </div>
+        </div>
+
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="/images/good.png" alt="" width="100%">
+                            </div>
+                            <div class="col-md-8">
+                                <div>
+                                    <ul class="none-list">
+                                        <li>
+                                            <strong class="s-left">รถเข็นยา</strong>
+                                            <span class="span-right">xxxxxxxxxx</span>
+                                        </li>
+                                        <li>
+                                            <strong class="s-left">ผู้รับผิดชอบ</strong>
+                                            <span class="span-right">ฐาปกรณ์ ขรัวทองเขียว</span>
+                                        </li>
+                                        <li>
+                                            <strong class="s-left">ตำแหน่ง</strong>
+                                            <span class="span-right">พยาบาลชำนานกาญ</span>
+                                        </li>
+                                        <li>
+                                            <strong class="s-left">เบอร์โทรศัพท์</strong>
+                                            <span class="span-right">089-xxx-xxxx</span>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h5>ค้นหารายการยา</h5>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            <div class="form-group  row">
+                                <input type="text" class="form-control col-md-9" placeholder="DrugID" name="id">
+                                <button type="submit" class="btn btn-outline-success col-md-3">ยืนยัน</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <button class="btn btn-primary" onclick="window.location.href='#'">รายชื่อผู้ป่วยทั้งหมด</button>
+
+                    </div>
+                    <div class="col-md-4">
+
+                        <button class="btn btn-light" onclick="window.location.href='#'">รายการยาทั้งหมด</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>ชื่อยา</th>
+                            <th>มื้อยา</th>
+                            <th>HN</th>
+                            <th>หมายเลขลิ้นชัก</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>xxxxxx</td>
+                            <td>xxxxxx</td>
+                            <td>xxxxxx</td>
+                            <td>xxxxxx</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+      
+                
+        
+        
+        <hr>
+
+
+        <a  class="btn btn-primary" href="/trolley ">ย้อนกลับ</a>
+    </div>
+    </div>
+
+</body>
+
+</html>
+
+</html>

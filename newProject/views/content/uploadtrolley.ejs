@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/wu.png">
+</head>
+<style> 
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-muted">อัพโหลดไฟล์ CSV ข้อมูลผู้ป่วย</p>
+                <div class="card shadow-sm mt-3">
+                    <div class="card-body">
+                        <form method="POST" action="/upload" enctype="multipart/form-data" class="custom-file" id="myform">
+                            <input type="file" class="custom-file-input" id="customFileLangHTML" name="file">
+                            <label class="custom-file-label" for="customFileLangHTML" data-browse="เลือกไฟล์">เลือกข้อมูลนำเข้า
+                                *CSV</label>
+        
+                                <button type="submit" class="btn btn-success col-md-3">อัพโหลด</button>
+                        </form>
+                       
+                        <% if(messages.error) {%>
+                            <div class="alert alert-danger" role="alert" ><%= messages.error%></div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+            <form action="/trolley/detial-trolley/1" method="POST" >
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                        
+                            <th>HN</th>
+                            <th>ชื่อ-สกุล</th>
+                            <th>เตียง</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i = 0; i < data.length; i++) {%>
+                         
+                            
+                        
+                        <tr>
+                           
+                            <td><%=data[i].hnId%></td>
+                            <td><%=data[i].fullname%></td>
+                            <td><%=data[i].bed%></td>
+                            
+                        </tr>
+                    <%} %>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                      
+                            <th>HN</th>
+                            <th>ชื่อ-สกุล</th>
+                            <th>เตียง</th>
+                         
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="text-right">
+                    <a class="btn btn-success btn-sm" onclick="load()" >ยืนยัน</a>
+                </div>
+                
+            </form>
+            </div>
+            
+        </div>
+        <hr>
+        <a class="btn btn-primary" href="/trolley/detail-trolley/1">ย้อนกลับ</a>
+    </div>
+
+</body>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
+</html>

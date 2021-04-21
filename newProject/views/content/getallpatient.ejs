@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="icon" href="/images/wu.png">
+  
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        <hr>
+        <div class="row mt-md-3">
+            <div class="col-md-4">
+                <h4>รายชื่อผู้ป่วยทั้งหมด</h4>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+            <form action="/trolley/detial-trolley/1" method="POST" >
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>HN</th>
+                            <th>ชื่อ-สกุล</th>
+                            <th>เตียง</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (let i = 0; i < data.length; i++) {%>
+                         
+                            
+                        
+                        <tr>
+                            <td><%=i+1%></td>
+                            <td><%=data[i].hnId%></td>
+                            <td><%=data[i].fullname%></td>
+                            <td><%=data[i].bed%></td>
+                            
+                        </tr>
+                    <%} %>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>#</th>
+                            <th>HN</th>
+                            <th>ชื่อ-สกุล</th>
+                            <th>เตียง</th>
+                         
+                        </tr>
+                    </tfoot>
+                </table>
+              
+                
+            </form>
+            </div>
+            
+        </div>
+        <hr>
+
+        <a  class="btn btn-primary" href="/trolley/detail-trolley/1">ย้อนกลับ</a>
+    </div>
+    </div>
+
+</body>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
+</html>

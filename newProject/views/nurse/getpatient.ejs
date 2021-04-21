@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <link rel="icon" href="/images/wu.png">
+ 
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        <hr>
+        <div class="row mt-md-3">
+            <div class="col-md-4">
+                <h4>จำนวนผู้ป่วยทั้งหมด</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead class="bg-blue text-white">
+                        <tr>
+                            <th>#</th>
+                            <th>หมายเลขประจำตัวผู้ป่วย</th>
+                            <th>ชื่อ-นามสกุล</th>
+                            <th>หมายเลขเตียง</th>
+                            <th></th>
+                        </tr>
+                    
+                    </thead>
+                    <tbody>
+                        <% if (data.length > 0) {%>
+                            <% for (let i = 0; i < data.length; i++) {%>
+                                
+                                <tr>
+                                    <td><%=data[i].hn%></td>
+                                    <td><%=data[i].firstname%></td>
+                                    <td><%=data[i].lastname%></td>
+                                    <td><%=data[i].bed%></td>
+                                </tr>
+                            <%} %>
+                       <% } %>
+                        
+                     
+                    </tbody>
+                   
+                </table>
+                <hr>
+                <button class="btn btn-warning float-right">ส่งคืนรายการยา</button>
+            </div>
+        </div>
+        <a  class="btn btn-primary" href="/nurse ">ย้อนกลับ</a>
+    </div>
+    </div>
+
+</body>
+
+</html>
+
+</html>

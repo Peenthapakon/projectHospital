@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+      <link rel="icon" href="/images/wu.png">
+
+      <title>รถเข็นจ่ายยา</title>
+    </head>
+
+    <body>
+      <%- include ../core/navbar.ejs %>
+      <div class="container">
+        <% var count = 0%>
+        <% for (let i = 0; i < data.length; i++) {%>
+          <% if (data[i].status == 0) {%>
+              <% count +=1%>
+          <%} %>
+  
+        <% } %>
+        <h4>ระบบจ่ายยา</h4>
+        <hr>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="  card card-trolley   shadow ">
+              <div class="card-body">
+                <div class="numbers">
+                  <p class="card-category">จำนวนรถเข็นทั้งหมด</p>
+                  <p class="card-title"> <%=data.length%> คัน</p>
+                </div>
+                <hr>
+                <div class="card-category">update</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card card-trolley   shadow">
+              <div class="card-body">
+                <div class="numbers">
+                  <p class="card-category">จำนวนรถเข็นในห้องยา</p>
+                  <p class="card-title"> <%=count%> คัน</p>
+                </div>
+                <hr>
+                <div class="card-category">update</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card card-trolley   shadow">
+              <div class="card-body">
+                <div class="numbers">
+                  <p class="card-category">จำนวนรถเข็นภายในวอร์ด</p>
+                  <p class="card-title"> x คัน</p>
+                </div>
+                <hr>
+                <div class="card-category">update</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card card-trolley  shadow">
+              <div class="card-body">
+                <div class="numbers">
+                  <p class="card-category">จำนวนรถเข็นส่งคืน</p>
+                  <p class="card-title"> x คัน</p>
+                </div>
+                <hr>
+                <div class="card-category">update</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-md-4">
+           
+         
+            <!-- URL send data to IOT-->
+
+
+        </div>
+        </div>
+        <hr>
+        <div class="row">
+        <% if (data.length) {%>
+          <% for(let i=0; i<data.length; i++) {%>
+         
+          <div class="col-xl-3 col-md-4">
+            <div class="card card-trolley shadow">
+              <div class="card-body">
+                <div class="img">
+                  <img
+                    src="/images/green.jpg"
+                    alt=""
+                    class="card-img-top rounded"
+                    style="width: 120px"
+                  />
+                  <hr>
+                  <div class="btn-trolley">
+                    <a class="btn btn-info" href="trolley/detail-trolley/<%=data[i].tId%>" window.alert('Succesfully Updated')>แสดงข้อมูล</a>
+                    <a class="btn btn-danger" href="/trolley/delete/<%=data[i].tId%>" onclick="return alert('Are you sure?')">ลบข้อมูล</a>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            </div>
+            <%}%>
+        <%} %>
+        </div>
+        <hr>
+        <% if (!data.length) {%>
+          <h1 class="text-center"> ไม่พบข้อมูลรถเข็น</h1>
+      <% } %>
+      </div>
+    </body> 
+</html>

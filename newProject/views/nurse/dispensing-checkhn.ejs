@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+    <link rel="icon" href="/images/wu.png">
+
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        <div class="row mt-md-3">
+            <div class="col-md-4">
+                <h4>เมนูการจ่ายยา</h4>
+                <h6 class="text-secondary">หอผู้ป่วย</h6>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="text-muted">ป้อนหมายเลขประจำตัวผู้ป่วย</h5>
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <%if(mybed){%>
+
+                        
+                        <form action="/nurse/dispensinghn/<%=mybed%>" method="POST">
+                            <div class="form-group  row" >
+                                <input type="search" name="hnId" class="form-control col-md-9" placeholder="รหัสHN" >
+                                <button  class="btn btn-outline-success col-md-3" >ยืนยัน</button>
+                            </div>
+                        </form>
+                        <%}%>
+                        <%if(!mybed){%>
+                                ไม่พบข้อมูล
+                            <%}%>
+                        <% if(locals.errors){ %>
+                            
+                              <% Object.values(errors).forEach(function(error){%>
+                                <script type="text/javascript">
+                                    Swal.fire({
+                                       icon: 'error',
+                                       title: 'กรุณาป้อนหมายเลขHN',
+                                       text: 'กรุณาป้อนหมายเลขHN',
+                                       timer:1000
+                                     })
+                                   </script>
+                              <%})%>
+                          
+                          <%}%>
+                          <% if(messages.error) {%>
+                            <script type="text/javascript">
+                                Swal.fire({
+                                   icon: 'error',
+                                   title: 'HNไม่ตรงกับเตียงผู้ป่วย',
+                                   text: 'กรุณาตรวจสอบใหม่',
+                                   timer:1000
+                                 })
+                               </script>
+                        <%}%>
+                        <% if(messages.success) {%>
+                            <script type="text/javascript">
+                                Swal.fire({
+                                   icon: 'success',
+                                   title: 'HNถูกต้อง',
+                                   text: 'HNถูกต้อง',
+                                   timer:1000
+                                 })
+                               </script>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr> 
+        <% if(messages.success) {%>
+            <div class="alert alert-danger" role="alert"><%= messages.success%></div>
+        <%}%>
+        <a class="btn btn-primary" href="/nurse ">ย้อนกลับ</a>
+    </div>
+    </div>
+
+</body>
+
+</html>
+
+</html>

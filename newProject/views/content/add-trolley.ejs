@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="icon" href="/images/wu.png">
+ 
+  <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+  <%- include ../core/navbar.ejs %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-trolley " style="margin-top: 50px;">
+          <div class="card-body">
+    
+            <form action="/trolley/add-trolley" method="POST">
+              <h4>ข้อมูลรถเข็นจ่ายยา</h4>
+              <hr>
+             
+              <div class="row">
+                <div class=" col-12 col-md-4 form-group">
+                  <label for="">จำนวนลิ้นชัก/ชั้น</label>
+                  <input type="number" name="drawer_number"  class="form-control" placeholder="จำนวนลิ้นชัก/ชั้น*">
+                  <% if (errors.drawer_number) { %>
+                    <div class="error text-danger">*<%= errors.drawer_number.msg %></div>
+                  <% } %>
+                </div>
+                <div class="col-12 col-md-4 form-group ">
+                  <label for="">จำนวนชั้น</label>
+                  <input type="number" name="box_number"  class="form-control" placeholder="จำนวนชั้น*">
+                  <% if (errors.box_number) { %>
+                    <div class="error text-danger">*<%= errors.box_number.msg %></div>
+                  <% } %>
+                </div>
+                <div class="col-12 col-md-4 form-group ">
+                  <label for="">วอร์ดผู้ป่วย</label>
+                  <input type="text" name="ward"  class="form-control" placeholder="วอร์ดผู้ป่วย*">
+                  <% if (errors.ward) { %>
+                    <div class="error text-danger">*<%= errors.ward.msg %></div>
+                  <% } %>
+                </div>
+              </div>
+
+              <hr>
+              <h4>ข้อมูลผู้รับผิดชอบ</h4>
+              <hr>
+        
+              <div class="row">
+                <div class="col-12 col-md-3 form-group">
+                  <label for="">ขื่อ</label>
+                  <input type="text" name="fname"  class="form-control" placeholder="ชื่อ*">
+                  <% if (errors.fname) { %>
+                    <div class="error text-danger">*<%= errors.fname.msg %></div>
+                  <% } %>
+                </div>
+
+                <div class="col-12 col-md-3 form-group">
+                  <label for="">นามสกุล</label>
+                  <input type="text" name="lname"  class="form-control" placeholder="นามสกุล*">
+                  <% if (errors.lname) { %>
+                    <div class="error text-danger">*<%= errors.lname.msg %></div>
+                  <% } %>
+                </div>
+
+                <div class="col-12 col-md-3 form-group">
+                  <label for="">ตำแหน่ง</label>
+                  <input type="text" name="position"  class="form-control" placeholder="ตำแหน่ง*">
+                  <% if (errors.position) { %>
+                    <div class="error text-danger">*<%= errors.position.msg %></div>
+                  <% } %>
+                </div>
+                <div class="col-12 col-md-3 form-group">
+                  <label for="">เบอร์โทรศัพท์</label>
+                  <input type="text" name="tel" class="form-control" placeholder="เบอร์โทรศัพท์*">
+                  <% if (errors.tel) { %>
+                    <div class="error text-danger">*<%= errors.tel.msg %></div>
+                  <% } %>
+                </div>
+              </div>
+
+              <hr>
+              <div class="btn-addform">
+
+                <button class="btn btn-link" type="button" onclick="window.location.href='/trolley'">ยกเลิก</button>
+                <button class="btn btn-success" type="submit" onclick="window.location.href='/trolley'">บันทึก</button>
+              </div>
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>
+
+</html>

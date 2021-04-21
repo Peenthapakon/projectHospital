@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/images/wu.png">
+
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+        <div class="container">
+            <hr>
+            <div class="row mt-md-3">
+                <div class="col-md-4">
+                    <h4>รายการยาทั้งหมด</h4>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <form action="/trolley/detial-trolley/1" method="POST">
+                        <table id="example" class="table table-striped table-bordered table-responsive " style="width:100%">
+                            <thead class="text-center">
+                                <tr>
+                                    <th>#</th>
+                                    <th>รหัสซองยา</th>
+                                    <th>ชื่อ</th>
+                                    <th>จำนวน</th>
+                                    <th>มื้อ</th>
+                                    <th>สถานะนำเข้า</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for (let i=0; i < data.length; i++) {%>
+
+
+
+                                    <tr>
+                                        <td>
+                                            <%=i+1%>
+                                        </td>
+                                        <td class="text-center">
+                                            <%=data[i].packId%>
+                                        </td>
+                                        <td>
+                                            <%=data[i].packName%>
+                                        </td>
+                                        <td>
+                                            <%=data[i].packUnit%>
+                                        </td>
+                                        <td>
+                                            <% switch (data[i].packMeal) { case 'BB' :%>
+                                                <%='ก่อน /เช้า'%>
+                                                    <% break; case 'AB' :%>
+                                                        <%='หลัง /เช้า'%>
+                                                            <% break; case 'BL' :%>
+                                                                <%='ก่อน /เที่ยง'%>
+                                                                    <%break; case 'AL' :%>
+                                                                        <%='หลัง /เที่ยง'%>
+                                                                            <%break; case 'BD' :%>
+                                                                                <%='ก่อน /เย็น'%>
+                                                                                    <%break; case 'AD' :%>
+                                                                                        <%='หลัง /เย็น'%>
+                                                                                            <%break; case 'BE' :%>
+                                                                                                <%='ก่อนนอน'%>
+                                                                                                    <%break; } %>
+                                        </td>
+                                        <td class="text-center">
+                                            <% if (data[i].status == 1) {%>
+                                                <div>
+                                                    <img src="/images/check.png" alt="" srcset="">
+                                                </div>
+
+                                                <%} else{%>
+                                                    <div>
+                                                        <img src="/images/remove.png" alt="" srcset="">
+                                                    </div>
+
+                                                    <%}%>
+                                        </td>
+
+                                    </tr>
+                                    <%} %>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>#</th>
+                                    <th>รหัสซองยา</th>
+                                    <th>ชื่อ</th>
+                                    <th>จำนวน</th>
+                                    <th>มื้อ</th>
+                                    <th>สถานะนำเข้า</th>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+
+
+                    </form>
+                </div>
+
+            </div>
+            <hr>
+
+            <a class="btn btn-primary" href="/trolley/detail-trolley/1">ย้อนกลับ</a>
+        </div>
+        </div>
+
+</body>
+<script>
+    // Add the following code if you want the name of the file appear on select
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+    $('#myModal').on('shown.bs.modal', function() {
+        $('#myInput').trigger('focus')
+    })
+</script>
+
+</html>

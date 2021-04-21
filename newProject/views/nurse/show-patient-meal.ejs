@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/images/wu.png">
+   
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                       <div class="row">
+                           <div class="col-md-3">
+                            <img src="/images/patient.jpeg" alt="" width="100%"> 
+                           </div>
+                           <div class="col-md-9">
+                            <p class="card-text">HN:<%=data[0].hn%></p>
+                            <p class="card-text">ชื่อสกุล::<%=data[0].fname%></p>
+                            <p class="card-text">เตียง::<%=data[0].bed%></p>
+                           </div>
+                       </div>
+                     
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <% if (data) {%>
+                        <% for (let i = 0; i < data.length; i++) {%>
+                           
+                    <div class="col-lg-3">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <img src="/images/meal0.png" alt="" width="50%">
+                                            <hr>
+                                            <label for="">มื้อ
+                                            
+                                                    <% switch (data[i].time) {
+                                                        case 'B':%>
+                                                        <form action="/nurse/p/<%=data[0].bed%>/B" method="POST">
+                                                            <button>เช้า</button>
+                                                        </form>
+                                                       
+                                                           
+                                                           <% break;
+                                                        case 'L':%>
+                                                        <a href="/nurse/p/<%=data[0].bed%>/L">เที่ยง</a>
+                                                           <% break; 
+                                                       case 'D':%>
+                                                       <a href="/nurse/p/<%=data[0].bed%>/D">เย็น</a>
+                                                            <%break;       
+                                                    
+                                                    } %> 
+                                           
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                    </div>
+                    <% } %>  
+                            <%} %>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row" >
+            <div class="col-md-12 tab-pane "  id="home">
+                <table class="table">
+                    <thead class="thead-inverse text-center">
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ชื่อ</th>
+                            <th>จำนวน</th>
+                            <th>มื้อ</th>
+                            <th>จ่าย</th>
+                           
+                            <th>off</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% if (data) {%>
+                        <% for (let i = 0; i < data.length; i++) {%>
+                     
+                         
+                                                        <tr>
+                                        <td><%=i+1%></td>
+                                <td cope="row"><%=data[i].name%></td>
+                                <td><%=data[i].unit%></td>
+                                <td><%=data[i].meal%></td>
+                                <td><button class="btn btn-success btn-sm">จ่าย</button></td>
+                                <td><button class="btn btn-warning btn-sm">หยุดยา</button></td>
+                            </tr>
+                                                           
+                                                     
+                     <%} %>
+                        <%} %>
+                        <% if (!data) {%>
+                            ไม่พบข้อมูล
+                            <%} %>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+
+        <a  class="btn btn-primary" href="/nurse">ย้อนกลับ</a>
+    </div>
+   
+<table class="table table-striped table-inverse table-responsive">
+    <thead class="thead-inverse">
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td scope="row"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td scope="row"></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+</table>
+</body>
+
+
+
+</html>

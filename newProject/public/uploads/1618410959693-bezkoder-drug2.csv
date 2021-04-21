@@ -1,0 +1,4 @@
+﻿id,packId,packName,packUnit,packMeal,hnId,codebox,codedrawer
+1,p0001,พารา,3,กช,63000035,0x01,0x40
+2,p0002,ลดไข้,3,หช,63000035,0x01,0x40
+3,p0003,แก้ท้อง,3,กท,63000035,0x01,0x40

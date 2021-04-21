@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" href="/images/wu.png">
+
+    <title>รถเข็นจ่ายยา</title>
+</head>
+<style>
+
+</style>
+
+<body>
+    <%- include ../core/navbar.ejs %>
+        <div class="container" id="meal">
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img src="/images/patient.jpeg" alt="" width="100%">
+                                </div>
+                                <div class="col-md-9">
+                                    <p class="card-text">HN:
+                                        <%=datamap[0].hnId%>
+                                    </p>
+                                    <p class="card-text">ชื่อสกุล:
+                                        <%=datamap[0].fullname%>
+                                    </p>
+                                    <p class="card-text">เตียง:
+                                        <%=datamap[0].bed%>
+                                    </p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <% if (data) {%>
+                            <% for (let i = 0; i < data.length; i++) {%>
+
+                                <div class="col-md-3">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body-md">
+                                            <div class="row">
+                                                <div class="col-md-12 text-center">
+                                                    <img src="/images/meal0.png" alt="" width="50%">
+                                                    <hr>
+                                                    <label for="">มื้อ
+                                            
+                                                    <% switch (data[i].time) {
+                                                        case 'B':%>
+                                                     <a   id="nav-profile-tab" data-toggle="collapse" href="#breakfast" role="tab" aria-controls="nav-profile" aria-selected="true">เช้า</a>
+                                                           
+                                                           <% break;
+                                                        case 'L':%>
+                                                        <a  id="nav-profile-tab" data-toggle="collapse" href="#lunch" role="tab" aria-controls="nav-profile" aria-selected="false">เที่ยง</a>
+                                                           <% break; 
+                                                       case 'D':%>
+                                                       <a  id="home-tab" data-toggle="collapse" href="#dinner" role="tab" aria-controls="home" aria-selected="true">เย็น</a>
+                                                            <%break; 
+                                                        case 'E':%>
+                                                       <a  id="home-tab" data-toggle="collapse" href="#evenig" role="tab" aria-controls="home" aria-selected="true">ก่อนนอน</a>
+                                                            <%break;            
+                                                    
+                                                    } %> 
+                                           
+                                            </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <% } %>
+                                    <%} %>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <!--มื้อเช้า-->
+                <div class="col-md-12 collapse" id="breakfast" data-parent="#meal">
+
+                    <table class="table table-striped table-inverse table-responsive">
+                        <thead class="thead-inverse text-center">
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>ชื่อ</th>
+                                <th>มื้อ</th>
+                                <th>จำนวน</th>
+                                <th>จ่าย</th>
+                                <th>หยุดยา</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="text-center">
+                            <% if (bf) {%>
+                                <% for (let i = 0; i < bf.length; i++) {%>
+
+                                    <form action="/nurse/dispensing/<%=bf[i].packId%>" method="POST">
+                                        <tr>
+                                            <td>
+                                                <%=i+1%>
+                                            </td>
+                                            <td scope="row">
+                                                <%=bf[i].name%>
+                                            </td>
+                                            <td>
+                                                <%=bf[i].meal%>
+                                            </td>
+                                            <td>
+                                                <%=bf[i].unit%>
+                                            </td>
+
+
+                                            <td><button class="btn btn-success btn-sm" type="submit">จ่าย</button></td>
+                                            <td><a class="btn btn-warning btn-sm" href="/nurse/drugoff/<%=bf[i].packId%>">หยุด</a></td>
+                                        </tr>
+                                    </form>
+
+                                    <%} %>
+                                        <%} %>
+                                            <% if (!bf) {%>
+                                                ไม่พบข้อมูล
+                                                <%} %>
+                        </tbody>
+                    </table>
+                </div>
+                <!--มื้อเช้า-->
+                <!--มื้อเทืี่ยง-->
+                <div class="col-md-12 collapse" id="lunch" data-parent="#meal">
+                    <table class="table table-striped table-inverse table-responsive">
+                        <thead class="thead-inverse text-center">
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>ชื่อ</th>
+                                <th>มื้อ</th>
+                                <th>จำนวน</th>
+                                <th>จ่าย</th>
+                                <th>หยุดยา</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <% if (lunch) {%>
+                                <% for (let i = 0; i < lunch.length; i++) {%>
+                                    <form action="/nurse/dispensing/<%=lunch[i].packId%>" method="POST">
+
+                                        <tr>
+                                            <td>
+                                                <%=i+1%>
+                                            </td>
+                                            <td scope="row">
+                                                <%=lunch[i].name%>
+                                            </td>
+                                            <td>
+                                                <%=lunch[i].meal%>
+                                            </td>
+                                            <td>
+                                                <%=lunch[i].unit%>
+                                            </td>
+                                            <td><button class="btn btn-success btn-sm">จ่าย</button></td>
+                                            <td><a class="btn btn-warning btn-sm" href="/nurse/drugoff/<%=lunch[i].packId%>">หยุด</a></td>
+                                        </tr>
+                                    </form>
+
+                                    <%} %>
+                                        <%} %>
+                                            <% if (!lunch) {%>
+                                                ไม่พบข้อมูล
+                                                <%} %>
+                        </tbody>
+                    </table>
+                </div>
+                <!--มื้อเทืี่ยง-->
+                <!--มื้อเย็น-->
+                <div class="col-md-12 collapse" id="dinner" data-parent="#meal">
+                    <table class="table table-striped table-inverse table-responsive">
+                        <thead class="thead-inverse text-center">
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>ชื่อ</th>
+                                <th>มื้อ</th>
+                                <th>จำนวน</th>
+                                <th>จ่าย</th>
+                                <th>หยุดยา</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <% if (dinner) {%>
+                                <% for (let i = 0; i < dinner.length; i++) {%>
+                                    <form action="/nurse/dispensing/<%=dinner[i].packId%>" method="POST">
+                                        <tr>
+                                            <td>
+                                                <%=i+1%>
+                                            </td>
+                                            <td cope="row">
+                                                <%=dinner[i].name%>
+                                            </td>
+                                            <td>
+                                                <%=dinner[i].meal%>
+                                            </td>
+                                            <td>
+                                                <%=dinner[i].unit%>
+                                            </td>
+                                            <td><button class="btn btn-success btn-sm">จ่าย</button></td>
+                                            <td><a class="btn btn-warning btn-sm" href="/nurse/drugoff/<%=dinner[i].packId%>">หยุด</a></td>
+                                        </tr>
+                                    </form>
+                                    <%} %>
+                                        <%} %>
+                                            <% if (!dinner) {%>
+                                                ไม่พบข้อมูล
+                                                <%} %>
+                        </tbody>
+                    </table>
+                </div>
+                <!--มื้อเย็น-->
+                <!--ก่อนนอน-->
+                <div class="col-md-12 collapse" id="evenig" data-parent="#meal">
+                    <table class="table table-striped table-inverse table-responsive">
+                        <thead class="thead-inverse text-center">
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>ชื่อ</th>
+                                <th>มื้อ</th>
+                                <th>จำนวน</th>
+                                <th>จ่าย</th>
+                                <th>หยุดยา</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <% if (eveing) {%>
+                                <% for (let i = 0; i < eveing.length; i++) {%>
+                                    <form action="/nurse/dispensing/<%=eveing[i].packId%>" method="POST">
+
+                                        <tr>
+                                            <td>
+                                                <%=i+1%>
+                                            </td>
+                                            <td cope="row">
+                                                <%=eveing[i].name%>
+                                            </td>
+                                            <td>
+                                                <%=eveing[i].unit%>
+                                            </td>
+                                            <td>
+                                                <%=eveing[i].meal%>
+                                            </td>
+                                            <td><button class="btn btn-success btn-sm">จ่าย</button></td>
+                                            <td><a class="btn btn-warning btn-sm" href="/nurse/drugoff/<%=eveing[i].packId%>">หยุด</a></td>
+                                        </tr>
+                                    </form>
+
+                                    <%} %>
+                                        <%} %>
+                                            <% if (!eveing) {%>
+                                                ไม่พบข้อมูล
+                                                <%} %>
+                        </tbody>
+                    </table>
+                </div>
+                <!--ก่อนนอน-->
+            </div>
+            <hr>
+            <a class="btn btn-primary" href="/nurse">ย้อนกลับ</a>
+
+        </div>
+</body>
+
+
+
+</html>
